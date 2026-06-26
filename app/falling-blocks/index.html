@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Falling Blocks Bug Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <section class="panel intro">
+      <p class="eyebrow">GitHub Flow Hands-on App</p>
+      <h1>Falling Blocks</h1>
+      <p>
+        ブロックが下に落ちるだけの小さなデモアプリです。
+        現在は底の判定にバグがあり、ブロックが盤面の下で止まらず落ち続けます。
+      </p>
+      <p class="hint">
+        修正対象: <code>app/falling-blocks/game.js</code> の <code>FLOOR_ROW</code>
+      </p>
+      <button id="reset" type="button">Reset</button>
+    </section>
+
+    <section class="panel game" aria-label="Falling Blocks board">
+      <div id="board" class="board" aria-label="Falling Blocks game board"></div>
+      <p id="status" class="status" aria-live="polite">Starting...</p>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
