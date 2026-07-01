@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GitHub Basic ワークショップ</title>
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=copy2">
 </head>
 <body>
 <header class="topbar">
@@ -16,6 +16,7 @@
   <nav class="steps" aria-label="ワークショップのステップ">
     <ol>
       <li class="active">はじめに</li>
+      <li>環境構築</li>
       <li>M1 Git / GitHub の基本</li>
       <li>M2 GitHub Flow</li>
       <li>M3 ハンズオン</li>
@@ -28,33 +29,13 @@
 
     <section class="step active">
       <p class="eyebrow">M0 / Introduction</p>
-      <h2>GitHub Flow で、アプリのバグ修正を一周する</h2>
+      <h2>はじめての GitHub 開発フロー入門</h2>
       <p class="lead">Git / GitHub 初心者が、Falling Blocks アプリの「底で止まらない」バグを題材に、Issue → Branch → Commit → Pull Request → Review → Merge の基本サイクルを体験するワークショップです。</p>
-
-      <div class="stepmap" aria-label="今日の流れ">
-        <span class="sm-item">Issue</span><span class="sm-arrow">→</span>
-        <span class="sm-item">Clone</span><span class="sm-arrow">→</span>
-        <span class="sm-item">修正(VSCode)</span><span class="sm-arrow">→</span>
-        <span class="sm-item">Commit/Push</span><span class="sm-arrow">→</span>
-        <span class="sm-item">Pull Request</span><span class="sm-arrow">→</span>
-        <span class="sm-item">Review</span><span class="sm-arrow">→</span>
-        <span class="sm-item">Merge</span>
-      </div>
 
       <div class="card">
         <b>本日のゴール</b>
         <ul>
           <li>GitHubを使った基本の開発の流れを理解すること</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <b>前提事項</b>
-        <ul>
-          <li>GitHub アカウントを持っていること<br>
-            <span class="note">まだ持っていない場合は <a href="../docs/create-github-account.md">GitHub アカウントを作成する</a>（公式: <a href="https://docs.github.com/ja/get-started/start-your-journey/creating-an-account-on-github">GitHubでのアカウントの作成</a>）</span></li>
-          <li>開発環境（<b>Git / VSCode / GitHub認証</b>）が用意できていること<br>
-            <span class="note">コードは自分のPCの VSCode で直します。未導入なら <a href="../onboarding/00-setup.md">環境構築ガイド</a> で事前に準備（約30〜45分）</span></li>
         </ul>
       </div>
 
@@ -65,23 +46,140 @@
       </div>
 
       <div class="timeline" aria-label="所要時間の目安">
-        <span class="tl-total">⏱ 約75分</span>
+        <span class="tl-total">⏱ 約105〜120分</span>
         <span class="tl-item">導入 <b>5</b>分</span>
+        <span class="tl-item">環境構築 <b>30〜45</b>分</span>
         <span class="tl-item">座学 <b>25</b>分</span>
         <span class="tl-item">デモ <b>8</b>分</span>
         <span class="tl-item">演習 <b>27</b>分</span>
         <span class="tl-item">レビュー <b>5</b>分</span>
         <span class="tl-item">まとめ <b>5</b>分</span>
       </div>
-      <p class="note">※ 環境構築（Git・VSCode・GitHub認証）は<b>事前準備（約30〜45分）</b>。上の時間には含みません。<a href="../onboarding/00-setup.md">環境構築ガイド</a></p>
 
       <p class="note">← → キー、または下部ボタンで移動できます。</p>
     </section>
 
     <section class="step">
+      <p class="eyebrow">Setup / 環境構築</p>
+      <h2>環境構築 — 開発に必要なツールをそろえる</h2>
+      <p class="lead">コードの修正は<b>自分のPCの VSCode</b>で行います。まず「前提」を確認し、次に <b>Git・VSCode・ターミナル・GitHub認証</b> をそろえます。<b>何も入っていなくてもOK</b>。順番に用意すれば <code>git clone</code> と <code>git push</code> ができる状態になります。<span class="note">所要 約30〜45分・本編の時間には含みません</span></p>
+
+      <div class="card">
+        <b>前提事項</b>
+        <ul>
+          <li>GitHub アカウントを持っていること<br>
+            <span class="note">まだ持っていない場合は <a href="../docs/create-github-account.md">GitHub アカウントを作成する</a>（公式: <a href="https://docs.github.com/ja/get-started/start-your-journey/creating-an-account-on-github">GitHubでのアカウントの作成</a>）</span></li>
+          <li>開発環境（<b>Git / VSCode / GitHub認証</b>）が用意できていること<br>
+            <span class="note">このページの 1〜6 でそろえます</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <b>必要ツール早見表</b>
+        <table>
+          <tr><th>#</th><th>ツール</th><th>役割</th><th>必須</th></tr>
+          <tr><td>1</td><td>GitHub アカウント</td><td>クラウド側の自分の入口</td><td>✅</td></tr>
+          <tr><td>2</td><td>Git</td><td>PCで履歴を記録する本体</td><td>✅</td></tr>
+          <tr><td>3</td><td>VS Code</td><td>ファイルを編集する道具</td><td>✅</td></tr>
+          <tr><td>4</td><td>ターミナル</td><td>コマンドを入力する画面</td><td>✅（OS標準）</td></tr>
+          <tr><td>5</td><td>GitHub CLI（gh）</td><td>認証・PR作成をかんたんに</td><td>⭐推奨</td></tr>
+        </table>
+        <p class="note">🔑 ゴール: 終わると自分のPCから <code>git clone</code>（ダウンロード）と <code>git push</code>（アップロード）ができる状態になります。</p>
+      </div>
+
+      <h3 class="phase">1️⃣ Git を入れる</h3>
+      <p>PC の中で変更履歴を記録するツール本体です。自分の OS のコマンドをコピーして実行します。</p>
+      <p><b>Windows</b>（おすすめ: winget）</p>
+<pre><code>winget install --id Git.Git -e</code></pre>
+      <p><b>macOS</b>（Homebrew）</p>
+<pre><code>brew install git</code></pre>
+      <p><b>Linux</b>（Debian / Ubuntu 系）</p>
+<pre><code>sudo apt update &amp;&amp; sudo apt install -y git</code></pre>
+      <p class="note">winget が使えない場合は <a href="https://git-scm.com/download/win">git-scm.com</a> のインストーラー（選択肢は既定でOK）。Homebrew が無ければ <code>xcode-select --install</code> でも入ります。確認は新しいターミナルで <code>git --version</code>（<code>command not found</code> の時はターミナルを開き直す）。</p>
+
+      <h3 class="phase">2️⃣ コードエディタ（VS Code）を入れる</h3>
+      <p>無料で Git と相性がよく初心者向け。<a href="https://code.visualstudio.com/">code.visualstudio.com</a> から入れます。Windows は winget でも入ります。</p>
+      <p><b>Windows</b>（winget）</p>
+<pre><code>winget install --id Microsoft.VisualStudioCode -e</code></pre>
+      <p class="note">起動して <b>File &gt; Open Folder</b> できればOK。VS Code内ターミナルは <code>Ctrl+`</code> で開けます。</p>
+
+      <h3 class="phase">3️⃣ ターミナルを開く</h3>
+      <table>
+        <tr><th>OS</th><th>使うもの</th><th>開き方</th></tr>
+        <tr><td>Windows</td><td>PowerShell</td><td>スタートで「PowerShell」検索</td></tr>
+        <tr><td>macOS</td><td>ターミナル</td><td>アプリ &gt; ユーティリティ &gt; ターミナル</td></tr>
+        <tr><td>Linux</td><td>端末</td><td>アプリ一覧から Terminal</td></tr>
+      </table>
+      <p class="note">Windows は「Git Bash」も可。本教材は PowerShell と macOS/Linux を併記します。</p>
+
+      <h3 class="phase">4️⃣ 名前とメールを設定</h3>
+      <p>Commit に記録される名前とメールを、最初に一度だけ設定します（<code>あなたの名前</code>・<code>you@example.com</code> は自分の値に置き換え）。</p>
+<pre><code>git config --global user.name "あなたの名前"
+git config --global user.email "you@example.com"
+git config --global init.defaultBranch main</code></pre>
+      <p class="note">3行目は既定ブランチ名を <code>main</code> にそろえる設定。メールは GitHub 登録分か、Settings &gt; Emails の noreply アドレス推奨。</p>
+      <p>設定できたか確認します。</p>
+<pre><code>git config --global user.name</code></pre>
+
+      <h3 class="phase">5️⃣ GitHub に接続する認証</h3>
+      <table>
+        <tr><th>方法</th><th>難易度</th><th>向いている人</th></tr>
+        <tr><td>A. GitHub CLI（gh）</td><td>★かんたん</td><td>これから始める人（おすすめ）</td></tr>
+        <tr><td>B. HTTPS + 資格情報マネージャー</td><td>★かんたん</td><td>ツールを増やしたくない人</td></tr>
+        <tr><td>C. SSH 鍵</td><td>★★ふつう</td><td>複数端末・仕組み理解したい人</td></tr>
+      </table>
+      <p><b>A. GitHub CLI（おすすめ）</b> — インストール（自分の OS のもの）。</p>
+      <p>Windows:</p>
+<pre><code>winget install --id GitHub.cli -e</code></pre>
+      <p>macOS:</p>
+<pre><code>brew install gh</code></pre>
+      <p>ログインして、状態を確認します。</p>
+<pre><code>gh auth login
+gh auth status</code></pre>
+      <p class="note"><code>gh auth login</code> の質問は <b>GitHub.com → HTTPS → Yes → ブラウザログイン</b> の順に答えます。<code>Logged in ...</code> と出れば成功。</p>
+      <p class="note"><b>B. HTTPS</b>: 初回 <code>git push</code> 時にブラウザ認証が出るので、特別な準備は不要です。代替として PAT classic（scope: <code>repo</code>）を発行し、push のパスワード欄に貼る方法もあります。</p>
+      <p><b>C. SSH 鍵</b> — 鍵を作成 → 公開鍵を表示してコピー → 接続テストの順に実行します。</p>
+<pre><code>ssh-keygen -t ed25519 -C "you@example.com"
+cat ~/.ssh/id_ed25519.pub
+ssh -T git@github.com</code></pre>
+      <p class="note">途中の質問は Enter でOK。表示された公開鍵を GitHub の <b>Settings &gt; SSH and GPG keys</b> に登録します。<code>Hi &lt;ID&gt;!</code> と出れば成功。迷ったら A、困ったら講師へ（認証まわりは環境差が大きいので一人で悩まなくてOK）。</p>
+
+      <h3 class="phase">6️⃣ 動作確認（clone と push の手前まで）</h3>
+      <p><code>&lt;owner&gt;/&lt;repo&gt;</code> は講師案内のリポジトリなど、実際の値に置き換えます。</p>
+<pre><code>git clone https://github.com/&lt;owner&gt;/&lt;repo&gt;.git
+cd &lt;repo&gt;
+git log --oneline -5
+git fetch</code></pre>
+      <p class="note"><code>git fetch</code> がエラーなく終われば認証OK（実際の push は本編で行います）。SSH を選んだ場合の clone は <code>git@github.com:&lt;owner&gt;/&lt;repo&gt;.git</code> 形式です。</p>
+
+      <div class="card">
+        <b>うまくいかないとき</b>
+        <table>
+          <tr><th>事象</th><th>対応</th></tr>
+          <tr><td><code>git: command not found</code></td><td>ターミナルを開き直す／Git再インストール</td></tr>
+          <tr><td>push で 403</td><td><code>gh auth login</code> をやり直す</td></tr>
+          <tr><td>パスワードを聞かれて失敗</td><td>PAT を発行 or <code>gh auth login</code></td></tr>
+          <tr><td><code>Permission denied (publickey)</code></td><td>SSH公開鍵を GitHub に登録</td></tr>
+          <tr><td><code>Authentication failed</code></td><td>資格情報マネージャーのGitHub項目を削除し再ログイン</td></tr>
+          <tr><td>会社PCで winget 不可</td><td>ブラウザからインストーラーを使う</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <b>完了チェック</b>
+        <ul>
+          <li><code>git --version</code> がバージョンを表示する</li>
+          <li>VS Code でフォルダを開ける</li>
+          <li><code>git config --global user.name</code> に名前が出る</li>
+          <li><code>git clone</code> / <code>git fetch</code> が通る（認証OK）</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="step">
       <p class="eyebrow">M1 / Basics</p>
       <h2>Git と GitHub の基本</h2>
-      <p class="lead">GitHub Flow で使う<strong>言葉と機能</strong>を、図とセットでイメージできるように整理します。最初に「Git は何をする道具か」「GitHub は何をする場所か」をつかみましょう。</p>
+      <p class="lead">GitHub を使った開発で出てくる<strong>言葉と機能</strong>を、図とセットでイメージできるように整理します。最初に「Git は何をする道具か」「GitHub は何をする場所か」をつかみましょう。</p>
 
       <div class="card">
         <b>Git と GitHub の違い</b>
@@ -223,8 +321,8 @@
 
     <section class="step">
       <p class="eyebrow">M2 / Flow</p>
-      <h2>GitHub Flow</h2>
-      <p class="lead">GitHub Flow は、main を安定した状態に保ちながら、小さな変更を Pull Request で取り込む開発フローです。</p>
+      <h2>GitHub での標準的な進め方（GitHub Flow）</h2>
+      <p class="lead">GitHub での開発で広く使われている<strong>標準的な進め方</strong>です。main を安定した状態に保ちながら、小さな変更を Pull Request で取り込みます。特別なルールではなく「みんなが使う基本の型」として身につけましょう。</p>
 
       <figure class="figure flow-visual">
         <svg viewBox="0 0 760 280" role="img" aria-label="mainからfix-falling-blocks-floor-github-idブランチが分かれ、Issue、Commit、Pull Request、Reviewを経てMergeでmainへ戻るGitHub Flowの図。">
@@ -273,7 +371,7 @@
       </figure>
 
       <div class="callout">
-        <b>キーメッセージ:</b> GitHub Flow は「小さく分けて、見える形で相談し、合意してから取り込む」ための開発の型です。
+        <b>キーメッセージ:</b> これは「小さく分けて、見える形で相談し、合意してから取り込む」という、GitHub 開発の基本の型のひとつです。
       </div>
 
       <div class="card">
@@ -445,6 +543,6 @@ const FLOOR_ROW = ROWS - 1;</code></pre>
   </main>
 </div>
 
-<script src="assets/app.js"></script>
+<script src="assets/app.js?v=copy2"></script>
 </body>
 </html>

@@ -206,6 +206,7 @@ pre {
   font-size: 13px;
   overflow-x: auto;
   padding: 14px 16px;
+  position: relative;
 }
 
 pre code {
@@ -522,3 +523,27 @@ button.nav:disabled {
     transition: none;
   }
 }
+
+/* コードブロックのコピーボタン */
+.copy-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #21262d;
+  color: #c9d1d9;
+  cursor: pointer;
+  opacity: .85;
+  transition: background .15s, opacity .15s, border-color .15s, color .15s;
+}
+.copy-btn svg { width: 16px; height: 16px; display: block; }
+.copy-btn:hover { background: #30363d; opacity: 1; }
+.copy-btn:focus-visible { outline: 2px solid #2f81f7; outline-offset: 1px; opacity: 1; }
+.copy-btn.copied { background: #238636; border-color: #2ea043; color: #fff; opacity: 1; }
