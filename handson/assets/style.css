@@ -186,6 +186,7 @@ h2 {
 }
 
 .callout.success { border-color: var(--green); }
+.callout.warn { border-color: var(--amber); }
 
 code,
 pre {
@@ -547,3 +548,47 @@ button.nav:disabled {
 .copy-btn:hover { background: #30363d; opacity: 1; }
 .copy-btn:focus-visible { outline: 2px solid #2f81f7; outline-offset: 1px; opacity: 1; }
 .copy-btn.copied { background: #238636; border-color: #2ea043; color: #fff; opacity: 1; }
+
+/* 次に受けるワークショップ */
+.next-workshops .ws-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+.ws-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #0d1117;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .15s, transform .15s, background .15s;
+}
+a.ws-card:hover { border-color: #2f81f7; transform: translateY(-2px); background: #11161d; }
+.ws-card--placeholder { opacity: .6; border-style: dashed; }
+.ws-badge {
+  align-self: flex-start;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #1f6feb33;
+  color: #79c0ff;
+}
+.ws-card--placeholder .ws-badge { background: #6e768133; color: #9da7b3; }
+.ws-title { font-weight: 700; font-size: 1.02rem; }
+.ws-desc { font-size: .86rem; color: #9da7b3; }
+.ws-soon {
+  align-self: flex-start;
+  margin-top: 2px;
+  font-size: .72rem;
+  color: #d29922;
+  border: 1px solid #d2992255;
+  border-radius: 6px;
+  padding: 1px 6px;
+}

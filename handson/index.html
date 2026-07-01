@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GitHub Basic ワークショップ</title>
-<link rel="stylesheet" href="assets/style.css?v=copy2">
+<link rel="stylesheet" href="assets/style.css?v=r2">
 </head>
 <body>
 <header class="topbar">
@@ -20,7 +20,9 @@
       <li>M1 Git / GitHub の基本</li>
       <li>M2 GitHub Flow</li>
       <li>M3 ハンズオン</li>
-      <li>M4 まとめ</li>
+      <li>M4 コンフリクト解決</li>
+      <li>M5 やり直し・復旧</li>
+      <li>M6 まとめ</li>
     </ol>
   </nav>
 
@@ -46,20 +48,21 @@
       </div>
 
       <div class="timeline" aria-label="所要時間の目安">
-        <span class="tl-total">⏱ 約105〜120分</span>
+        <span class="tl-total">⏱ 約125〜140分</span>
         <span class="tl-item">導入 <b>5</b>分</span>
         <span class="tl-item">環境構築 <b>30〜45</b>分</span>
         <span class="tl-item">座学 <b>25</b>分</span>
         <span class="tl-item">デモ <b>8</b>分</span>
         <span class="tl-item">演習 <b>27</b>分</span>
         <span class="tl-item">レビュー <b>5</b>分</span>
+        <span class="tl-item">応用 <b>20</b>分</span>
         <span class="tl-item">まとめ <b>5</b>分</span>
       </div>
 
       <p class="note">← → キー、または下部ボタンで移動できます。</p>
     </section>
 
-    <section class="step">
+    <section class="step" data-step="setup">
       <p class="eyebrow">Setup / 環境構築</p>
       <h2>環境構築 — 開発に必要なツールをそろえる</h2>
       <p class="lead">コードの修正は<b>自分のPCの VSCode</b>で行います。まず「前提」を確認し、次に <b>Git・VSCode・ターミナル・GitHub認証</b> をそろえます。<b>何も入っていなくてもOK</b>。順番に用意すれば <code>git clone</code> と <code>git push</code> ができる状態になります。<span class="note">所要 約30〜45分・本編の時間には含みません</span></p>
@@ -294,18 +297,6 @@ git fetch</code></pre>
         <figcaption><b>Branch</b> は main から分かれて作業し、<b>Pull Request → Review</b> を経て <b>Merge</b> で main に戻ります。main は常に安定した状態を保てます。</figcaption>
       </figure>
 
-      <h3 class="phase">🧭 今日のハンズオンとの対応</h3>
-      <p class="note">上の用語が、今日の手を動かす作業のどこで出てくるかを並べます。</p>
-      <table>
-        <tr><th>機能</th><th>使いどころ</th><th>今日の体験</th></tr>
-        <tr><td>Issue</td><td>やること・目的を残す</td><td>Falling Blocks の底判定バグをIssueにする</td></tr>
-        <tr><td>Branch</td><td>main から分けて安全に作業する</td><td><code>fix-falling-blocks-floor-&lt;github-id&gt;</code> を作る</td></tr>
-        <tr><td>Commit</td><td>変更を履歴として保存する</td><td><code>game.js</code> の修正を保存する</td></tr>
-        <tr><td>Pull Request</td><td>変更を取り込む前に相談する</td><td>差分を見せてレビューを依頼する</td></tr>
-        <tr><td>Review</td><td>変更を確認し、コメントする</td><td>ペアのPRにコメントする</td></tr>
-        <tr><td>Merge</td><td>変更を既定ブランチへ取り込む</td><td>レビュー後にPRをマージする</td></tr>
-      </table>
-
       <div class="card">
         <b>レビューの見方</b>
         <ul>
@@ -370,10 +361,6 @@ git fetch</code></pre>
         <figcaption>大事なのは「番号」ではなく、<b>main から作業Branchが分かれ、PR/Reviewで確認して、Mergeでmainへ戻る</b>という形です。</figcaption>
       </figure>
 
-      <div class="callout">
-        <b>キーメッセージ:</b> これは「小さく分けて、見える形で相談し、合意してから取り込む」という、GitHub 開発の基本の型のひとつです。
-      </div>
-
       <div class="card">
         <b>このワークショップでの運用ルール</b>
         <ul>
@@ -397,40 +384,8 @@ git fetch</code></pre>
       <div class="card">
         <b>🧰 事前準備（必須）</b>
         <p>コードは自分のPCの VSCode で直します。<b>Git / VSCode / GitHub認証</b> を先に用意してください。</p>
-        <p class="doclink">→ <a href="../onboarding/00-setup.md">環境構築（必要ツール・インストール・認証）</a></p>
-      </div>
-
-      <div class="card">
-        <b>最初に決める値</b>
-        <table>
-          <tr><th>値</th><th>例</th><th>使う場所</th></tr>
-          <tr><td><code>&lt;github-id&gt;</code></td><td><code>octocat</code></td><td>Branch名の一部</td></tr>
-          <tr><td><code>&lt;issue-number&gt;</code></td><td><code>12</code></td><td>PR本文の <code>Closes #12</code></td></tr>
-          <tr><td><code>&lt;branch-name&gt;</code></td><td><code>fix-falling-blocks-floor-octocat</code></td><td>Branch作成、PRのcompare</td></tr>
-        </table>
-      </div>
-
-      <div class="card">
-        <b>Issueに入力する情報</b>
-        <table>
-          <tr><th>GitHub画面の入力欄</th><th>入力する内容</th></tr>
-          <tr><td>Title</td><td><code>Fix Falling Blocks floor detection</code></td></tr>
-          <tr><td>本文: Goal</td><td>ブロックが盤面の外へ落ち続けるバグを直す</td></tr>
-          <tr><td>本文: Current behavior</td><td>底で止まらず落ち続ける</td></tr>
-          <tr><td>本文: Expected behavior</td><td>盤面の底で止まる</td></tr>
-          <tr><td>本文: File / Branch</td><td><code>app/falling-blocks/game.js</code> / <code>fix-falling-blocks-floor-&lt;github-id&gt;</code></td></tr>
-        </table>
-      </div>
-
-      <div class="card">
-        <b>確認するアプリ</b>
-        <p><a href="../app/falling-blocks/">Falling Blocks を開く</a></p>
-        <b>修正対象</b>
-<pre><code>app/falling-blocks/game.js</code></pre>
-        <b>修正する考え方</b>
-<pre><code>const FLOOR_ROW = Number.POSITIVE_INFINITY;
-// ↓
-const FLOOR_ROW = ROWS - 1;</code></pre>
+        <p class="doclink">→ このスライドの <a href="#" data-goto="setup"><b>② 環境構築</b></a> を参照（必要ツール・インストール・認証）</p>
+        <p class="note">✅ 事前に確認しておく: 自分の <b>GitHub アカウント名</b>（<code>&lt;github-id&gt;</code>）。GitHub 画面右上のアイコンをクリックすると <code>@ユーザー名</code>（例: <code>octocat</code>）が出ます。以降の Branch 名などで使います。</p>
       </div>
 
       <h3 class="phase">🛠️ 手順（どこで何をするか）</h3>
@@ -438,7 +393,16 @@ const FLOOR_ROW = ROWS - 1;</code></pre>
         <li>
           <b>Issue を作る（GitHub）</b><br>
           <span class="lbl">押す:</span><b>Issues</b> タブ → 右上の緑 <b>New issue</b> → 右下の緑 <b>Submit new issue</b><br>
-          <span class="lbl">入力:</span>Title と本文（テンプレを貼って <code>&lt;github-id&gt;</code> を置換）
+          <span class="lbl">入力:</span>下の内容を入力（<code>&lt;github-id&gt;</code> は自分のIDに置換）
+          <table>
+            <tr><th>入力欄</th><th>入力する内容</th></tr>
+            <tr><td>Title</td><td><code>Fix Falling Blocks floor detection</code></td></tr>
+            <tr><td>本文: Goal</td><td>ブロックが盤面の外へ落ち続けるバグを直す</td></tr>
+            <tr><td>本文: Current behavior</td><td>底で止まらず落ち続ける</td></tr>
+            <tr><td>本文: Expected behavior</td><td>盤面の底で止まる</td></tr>
+            <tr><td>本文: File / Branch</td><td><code>app/falling-blocks/game.js</code> / <code>fix-falling-blocks-floor-&lt;github-id&gt;</code></td></tr>
+          </table>
+          <div class="note">✅ 作成後: タイトル横／URL 末尾の <code>#番号</code> が <b>Issue 番号</b>（<code>&lt;issue-number&gt;</code>）。あとで PR 本文の <code>Closes #&lt;issue-number&gt;</code> で使うので控えておく。</div>
           <div class="shot" data-shot="03-issue-form-filled">📷 ここにスクショ → <code>images/03-issue-form-filled.png</code></div>
         </li>
         <li>
@@ -448,9 +412,18 @@ const FLOOR_ROW = ROWS - 1;</code></pre>
           <div class="shot" data-shot="05-code-clone-url">📷 ここにスクショ → <code>images/05-code-clone-url.png</code></div>
         </li>
         <li>
+          <b>アプリを開いてバグを確認（PC）</b><br>
+          <span class="lbl">開く:</span>エクスプローラー / Finder で <code>app/falling-blocks/index.html</code> をダブルクリック（ブラウザで開く）<br>
+          <span class="lbl">見る:</span>ブロックが盤面の底で止まらず落ち続けることを確認
+          <div class="note">サーバは不要です。ファイルをブラウザのウィンドウにドラッグしても開けます。VSCode なら拡張機能「Live Server」でも表示できます。</div>
+        </li>
+        <li>
           <b>Branch を作って <code>game.js</code> を修正（PC）</b><br>
           <span class="lbl">コマンド:</span><code>git switch -c fix-falling-blocks-floor-&lt;github-id&gt;</code><br>
-          <span class="lbl">VSCodeで:</span><code>const FLOOR_ROW = ROWS - 1;</code>（この1行だけ）→ 保存
+          <span class="lbl">修正対象:</span><code>app/falling-blocks/game.js</code> の <code>FLOOR_ROW</code><br>
+          <span class="lbl">VSCodeで:</span>次の1行に直して保存
+<pre><code>const FLOOR_ROW = ROWS - 1;</code></pre>
+          <div class="note">✅ 確認: 今いる Branch が <code>main</code> ではなく自分の作業 Branch（VSCode 左下の Branch 表示／<code>git branch</code>）。保存してアプリを再読み込みすると、ブロックが底で止まる。</div>
           <div class="shot" data-shot="07-vscode-edit">📷 ここにスクショ → <code>images/07-vscode-edit.png</code></div>
         </li>
         <li>
@@ -463,6 +436,7 @@ const FLOOR_ROW = ROWS - 1;</code></pre>
           <b>Pull Request を作って Review する（GitHub）</b><br>
           <span class="lbl">押す:</span>上部の緑 <b>Compare &amp; pull request</b> → 本文に <code>Closes #&lt;issue-number&gt;</code><br>
           <span class="lbl">Review:</span>ペアの PR の <b>Files changed</b> → 右上 <b>Review changes</b> → 緑 <b>Submit review</b>
+          <div class="note">✅ 確認: PR の向きが <code>base: main</code> / <code>compare: fix-falling-blocks-floor-&lt;github-id&gt;</code>。<b>Files changed</b> が <code>app/falling-blocks/game.js</code> の差分中心。<code>Closes #&lt;issue-number&gt;</code> で Issue と PR がつながっている。</div>
           <div class="shot" data-shot="13-review-changes">📷 ここにスクショ → <code>images/13-review-changes.png</code></div>
         </li>
         <li>
@@ -486,22 +460,108 @@ const FLOOR_ROW = ROWS - 1;</code></pre>
         </ul>
       </div>
 
-      <div class="card">
-        <b>作業中の確認ポイント</b>
-        <ul>
-          <li>今いる Branch が <code>main</code> ではなく、自分の作業 Branch になっている（VSCode 左下の Branch 表示／<code>git branch</code> で確認）</li>
-          <li>Pull Request の向きが <code>base: main</code>、<code>compare: fix-falling-blocks-floor-&lt;github-id&gt;</code> になっている</li>
-          <li>Files changed で、<code>app/falling-blocks/game.js</code> の差分が中心になっている</li>
-          <li><code>Closes #&lt;issue-number&gt;</code> で Issue と PR がつながっている</li>
-        </ul>
-      </div>
-
       <p class="doclink">手順詳細: <a href="01-github-flow-web.md">基本編: VSCode で修正し、GitHub Flow を一周する</a></p>
     </section>
 
     <section class="step">
-      <p class="eyebrow">M4 / Wrap-up</p>
-      <h2>まとめと次の一歩</h2>
+      <p class="eyebrow">M4 / Conflicts</p>
+      <h2>コンフリクト解決</h2>
+      <p class="lead">同じ行を2人が別々に変えると、Git は自動で決められず <b>コンフリクト（衝突）</b> になります。<b>エラーではなく「どちらを採用するか人に聞いている」サイン</b>。落ち着いて直せば必ず解決できます。</p>
+
+      <div class="callout">
+        <b>いつ起きる？</b> 「<b>同じファイルの同じ行</b>」を別々に変えたとき。違う行・違うファイルなら Git がきれいに合体してくれます（コンフリクトになりません）。
+      </div>
+
+      <h3 class="phase">🔎 マーカーの読み方</h3>
+      <p>衝突したファイルを開くと、Git が印（マーカー）を書き込みます。</p>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+const FLOOR_ROW = ROWS - 1;
+=======
+const FLOOR_ROW = ROWS;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; main</code></pre>
+      <table>
+        <tr><th>マーカー</th><th>意味</th></tr>
+        <tr><td><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code></td><td>ここから下は <b>自分側</b> の変更</td></tr>
+        <tr><td><code>=======</code></td><td>区切り線（上が自分・下が相手）</td></tr>
+        <tr><td><code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; main</code></td><td>ここまでが <b>相手側</b> の変更</td></tr>
+      </table>
+      <div class="note">🔑 解決とは <b>3つのマーカーを全部消して、正しい1つの内容に書き直す</b>こと。自分か相手の二択とは限らず、両方を活かした第三の正解でもかまいません。</div>
+
+      <h3 class="phase">🛠️ 直す手順（ローカル / VSCode）</h3>
+      <ol class="checklist ops">
+        <li>
+          <b>どのファイルが衝突したか確認</b><br>
+          <span class="lbl">コマンド:</span><code>git status</code>（"Unmerged paths" に出る）
+        </li>
+        <li>
+          <b>VSCode で開いて書き直す</b><br>
+          <span class="lbl">押す:</span>マーカー上の <b>Accept Current / Incoming / Both</b> ボタン、または手で編集<br>
+          <span class="lbl">必ず:</span><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> <code>=======</code> <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> のマーカーを全部消す
+        </li>
+        <li>
+          <b>解決を保存して送信</b><br>
+          <span class="lbl">コマンド:</span><code>git add &lt;ファイル&gt;</code> → <code>git commit</code> → <code>git push</code><br>
+          <span class="lbl">確認:</span><code>git diff --check</code>（残ったマーカーを警告してくれる）
+        </li>
+      </ol>
+      <div class="note">✅ 確認: <code>git status</code> の "Unmerged paths" が消えていれば解決完了。</div>
+
+      <div class="card">
+        <b>迷ったとき / 予防のコツ</b>
+        <ul>
+          <li>混乱したら（commit 前なら）<code>git merge --abort</code> で元の状態に戻せる</li>
+          <li>かんたんな衝突は PR 画面の <b>Resolve conflicts</b> → <b>Mark as resolved</b> → <b>Commit merge</b> でもOK</li>
+          <li>予防: 作業前に <code>git pull</code> ／ PR は小さく短命に ／ こまめに main を取り込む</li>
+        </ul>
+      </div>
+
+      <p class="doclink">詳細: <a href="../onboarding/02-conflicts.md">02. コンフリクト解決</a></p>
+    </section>
+
+    <section class="step">
+      <p class="eyebrow">M5 / Undo &amp; Recovery</p>
+      <h2>やり直し・復旧</h2>
+      <p class="lead">Git は履歴を残すので <b>たいていの操作はやり直せます</b>。あわてて強い操作をする前に、まず <code>git status</code> と <code>git log --oneline</code> で状況を確認しましょう。</p>
+
+      <h3 class="phase">🧭 「やっちゃった」早見表</h3>
+      <table>
+        <tr><th>状況</th><th>使うもの</th></tr>
+        <tr><td>直前の commit メッセージを打ち間違えた（push前）</td><td><code>git commit --amend</code></td></tr>
+        <tr><td><code>add</code> したが commit に入れたくない</td><td><code>git restore --staged &lt;file&gt;</code></td></tr>
+        <tr><td>編集を全部捨てて元に戻したい（commit前）</td><td><code>git restore &lt;file&gt;</code></td></tr>
+        <tr><td>main に直接 commit してしまった（push前）</td><td>新ブランチへ退避 → main を戻す</td></tr>
+        <tr><td>push 済みの変更を取り消したい</td><td><code>git revert &lt;hash&gt;</code></td></tr>
+        <tr><td>履歴を見失った</td><td><code>git reflog</code></td></tr>
+      </table>
+
+      <h3 class="phase">💡 よくある2つのリカバリ</h3>
+      <div class="card">
+        <b>① main に直接 commit してしまった（push前）</b><br>
+        <span class="lbl">退避:</span>今の変更ごと新しいブランチへ移す
+<pre><code>git switch -c fix-my-work-&lt;github-id&gt;</code></pre>
+        <span class="lbl">戻す:</span>main をリモートの状態に合わせる
+<pre><code>git switch main
+git reset --hard origin/main</code></pre>
+        <div class="note">→ 変更は新ブランチに退避され、main は元通り。あとは push → PR の通常フローに戻れます。</div>
+      </div>
+      <div class="card">
+        <b>② push 済みを取り消す（いちばん安全）</b><br>
+        履歴を消さず「打ち消す commit を1つ足す」やり方です。
+<pre><code>git revert &lt;commit-hash&gt;
+git push</code></pre>
+        <div class="note">Web でも Merge 済み PR に <b>Revert</b> ボタンが出れば、打ち消し用の PR を自動で作れます。</div>
+      </div>
+
+      <div class="callout warn">
+        <b>⚠️ 触る前に確認（初心者は基本使わない）:</b> <code>git reset --hard</code>（編集や commit を消す）／ <code>git push --force</code>（リモート履歴を上書き）／ <code>git clean -fd</code>（未追跡ファイルを削除）。意味が分かるまで使わないこと。おかしくなったら、<b>新しい操作をする前に</b>講師へ相談してください。
+      </div>
+
+      <p class="doclink">詳細: <a href="../onboarding/03-undo-recovery.md">03. やり直し・復旧</a></p>
+    </section>
+
+    <section class="step">
+      <p class="eyebrow">M6 / Wrap-up</p>
+      <h2>まとめ</h2>
       <p class="lead">今日の体験を、実務で使う GitHub の基本動作につなげます。</p>
 
       <div class="card">
@@ -515,25 +575,27 @@ const FLOOR_ROW = ROWS - 1;</code></pre>
         </ul>
       </div>
 
-      <table>
-        <tr><th>次に学ぶこと</th><th>目的</th></tr>
-        <tr><td>ローカル開発オンボーディング編</td><td>自分のPCで clone→commit→push を1周する（環境構築・同期・コンフリクト・復旧）</td></tr>
-        <tr><td>GitHub Actions</td><td>テストやビルドを自動化する</td></tr>
-        <tr><td>Branch protection / Ruleset</td><td>レビューやチェックを運用ルールにする</td></tr>
-        <tr><td>GitHub Pages</td><td>ドキュメントをWebサイトとして公開する</td></tr>
-      </table>
-
       <div class="callout success">
         <b>ゴール:</b> 便利機能をたくさん覚えることではなく、Issue → Branch → Commit → Pull Request → Review → Merge の意味を説明できること。
       </div>
 
-      <div class="callout">
-        <b>次の一歩（任意）:</b> 自分のPCで開発を始めるなら
-        <a href="../onboarding/README.md">ローカル開発オンボーディング編</a> へ。
-        まずは <a href="../onboarding/00-setup.md">00. 環境構築</a> で必要ツールと認証をそろえます。
+      <div class="card next-workshops">
+        <b>▶ 次に受けるワークショップ</b>
+        <p class="note">この基本編の後に続くワークショップです（リンクは準備中）。</p>
+        <div class="ws-grid">
+          <a class="ws-card" href="#">
+            <span class="ws-badge">GHCP · Basic</span>
+            <span class="ws-title">GitHub Copilot Basic Workshop</span>
+            <span class="ws-desc">AI ペアプロで開発を加速する基本を学ぶ</span>
+            <span class="ws-soon">準備中</span>
+          </a>
+          <span class="ws-card ws-card--placeholder">
+            <span class="ws-badge">Coming soon</span>
+            <span class="ws-title">続編を準備中</span>
+            <span class="ws-desc">ワークショップが増えたらここに追加します</span>
+          </span>
+        </div>
       </div>
-
-      <p class="doclink">講師向け: <a href="../facilitator/facilitator-guide.md">講師進行ガイド</a></p>
     </section>
 
     <div class="nav-btns">
@@ -543,6 +605,6 @@ const FLOOR_ROW = ROWS - 1;</code></pre>
   </main>
 </div>
 
-<script src="assets/app.js?v=copy2"></script>
+<script src="assets/app.js?v=r2"></script>
 </body>
 </html>

@@ -57,6 +57,15 @@ navItems.forEach((item, index) => {
 previousButton.addEventListener("click", () => showStep(current - 1));
 nextButton.addEventListener("click", () => showStep(current + 1));
 
+document.querySelectorAll("[data-goto]").forEach((el) => {
+  el.addEventListener("click", (event) => {
+    event.preventDefault();
+    const key = el.getAttribute("data-goto");
+    const idx = steps.findIndex((step) => step.dataset.step === key);
+    if (idx >= 0) showStep(idx);
+  });
+});
+
 document.addEventListener("keydown", (event) => {
   const target = event.target;
   if (
