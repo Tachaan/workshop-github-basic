@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GitHub Basic ワークショップ</title>
-<link rel="stylesheet" href="assets/style.css?v=r2">
+<link rel="stylesheet" href="assets/style.css?v=r3">
 </head>
 <body>
 <header class="topbar">
@@ -20,9 +20,11 @@
       <li>M1 Git / GitHub の基本</li>
       <li>M2 GitHub Flow</li>
       <li>M3 ハンズオン</li>
-      <li>M4 コンフリクト解決</li>
-      <li>M5 やり直し・復旧</li>
-      <li>M6 まとめ</li>
+      <li>M4 コラボ &amp; Markdown</li>
+      <li>M5 コンフリクト解決</li>
+      <li>M6 やり直し・復旧</li>
+      <li>M7 履歴を読む・探す</li>
+      <li>M8 まとめ</li>
     </ol>
   </nav>
 
@@ -47,15 +49,21 @@
         <p class="note">現状はブロックが底で止まらず、盤面の外を落ち続けます。</p>
       </div>
 
+      <div class="card">
+        <b>この教材の位置づけ</b>
+        <p>Microsoft Learn の <b>GitHub Foundations（GH-900）</b> のうち、Git / GitHub の<strong>基本フロー</strong>（リポジトリ → Issue → Branch → Commit → Pull Request → Review → Merge）を手を動かして体験する部分に準拠しています。ゴールは、チーム開発に自走で参加できる状態になることです。</p>
+        <p class="note">対象外: Copilot・セキュリティ・Projects・OSS/InnerSource・管理/認可・プラン/課金などの応用トピック。これらは続編ワークショップで扱います。</p>
+      </div>
+
       <div class="timeline" aria-label="所要時間の目安">
-        <span class="tl-total">⏱ 約125〜140分</span>
+        <span class="tl-total">⏱ 約145〜160分</span>
         <span class="tl-item">導入 <b>5</b>分</span>
         <span class="tl-item">環境構築 <b>30〜45</b>分</span>
         <span class="tl-item">座学 <b>25</b>分</span>
         <span class="tl-item">デモ <b>8</b>分</span>
         <span class="tl-item">演習 <b>27</b>分</span>
         <span class="tl-item">レビュー <b>5</b>分</span>
-        <span class="tl-item">応用 <b>20</b>分</span>
+        <span class="tl-item">発展 <b>40</b>分</span>
         <span class="tl-item">まとめ <b>5</b>分</span>
       </div>
 
@@ -88,6 +96,18 @@
           <tr><td>5</td><td>GitHub CLI（gh）</td><td>認証・PR作成をかんたんに</td><td>⭐推奨</td></tr>
         </table>
         <p class="note">🔑 ゴール: 終わると自分のPCから <code>git clone</code>（ダウンロード）と <code>git push</code>（アップロード）ができる状態になります。</p>
+      </div>
+
+      <div class="card">
+        <b>☁️ 代替ルート: Codespaces（ローカル構築が難しいとき）</b>
+        <p>ローカルに Git / VSCode をそろえるのが難しい場合は、<b>GitHub Codespaces</b> が使えます。ブラウザの中にクラウドの VSCode が開き、<b>Git・gh・エディタが最初から入った状態</b>で始められます。環境差でつまずきません。</p>
+        <table>
+          <tr><th>項目</th><th>内容</th></tr>
+          <tr><td>開き方</td><td>リポジトリの緑 <b>&lt; &gt; Code</b> → <b>Codespaces</b> タブ → <b>Create codespace on main</b></td></tr>
+          <tr><td>できること</td><td>本編の <code>git</code> コマンド・編集・push が<b>そのまま同じ手順</b>で動く（下の 1〜6 のインストールは不要）</td></tr>
+          <tr><td>料金</td><td>個人アカウントは<b>無料枠</b>あり（一定時間/月）。使い終わったら Stop すると節約できる</td></tr>
+        </table>
+        <p class="note">本教材は<b>ローカルを基本</b>に進めますが、Codespaces でも同じことができます（ターミナルは同じコマンド、編集は同じ VSCode）。迷ったら講師に相談してください。</p>
       </div>
 
       <h3 class="phase">1️⃣ Git を入れる</h3>
@@ -388,6 +408,18 @@ git fetch</code></pre>
         <p class="note">✅ 事前に確認しておく: 自分の <b>GitHub アカウント名</b>（<code>&lt;github-id&gt;</code>）。GitHub 画面右上のアイコンをクリックすると <code>@ユーザー名</code>（例: <code>octocat</code>）が出ます。以降の Branch 名などで使います。</p>
       </div>
 
+      <div class="card">
+        <b>🎬 講師デモ: リポジトリをゼロから作る（見るだけ・2〜3分）</b>
+        <p>今日は用意済みのリポジトリを使いますが、<b>実務では自分でリポジトリを作る</b>ところから始まります。まず講師が画面で流れを見せます。</p>
+        <ol class="checklist ops">
+          <li><span class="lbl">押す:</span>画面右上の <b>＋</b> → <b>New repository</b></li>
+          <li><span class="lbl">入力:</span>Repository name を決める → 公開範囲（<b>Public</b> / <b>Private</b>）を選ぶ</li>
+          <li><span class="lbl">選ぶ:</span><b>Add a README</b> / <b>.gitignore</b>（言語テンプレート）/ <b>License</b> を必要に応じて追加</li>
+          <li><span class="lbl">押す:</span>緑 <b>Create repository</b></li>
+        </ol>
+        <p class="note">README・.gitignore・License は「最初に用意しておくと親切な初期ファイル」。作成後は、この後の手順と同じ流れ（clone → Branch → …）で開発できます。</p>
+      </div>
+
       <h3 class="phase">🛠️ 手順（どこで何をするか）</h3>
       <ol class="checklist ops">
         <li>
@@ -409,6 +441,7 @@ git fetch</code></pre>
           <b>clone して VSCode で開く（PC）</b><br>
           <span class="lbl">押す:</span>緑 <b>&lt; &gt; Code</b> → <b>HTTPS</b> の URL をコピー<br>
           <span class="lbl">コマンド:</span><code>git clone &lt;URL&gt;</code> → <code>cd &lt;repo&gt;</code> → <code>code .</code>
+          <div class="note">☁️ 代替: ローカルに clone せず <b>&lt; &gt; Code → Codespaces → Create codespace</b> でも同じ手順を進められます（この場合この clone は不要。以降のターミナル操作は Codespace 内で行います）。</div>
           <div class="shot" data-shot="05-code-clone-url">📷 ここにスクショ → <code>images/05-code-clone-url.png</code></div>
         </li>
         <li>
@@ -464,7 +497,55 @@ git fetch</code></pre>
     </section>
 
     <section class="step">
-      <p class="eyebrow">M4 / Conflicts</p>
+      <p class="eyebrow">M4 / Collaboration &amp; Markdown</p>
+      <h2>コラボ &amp; Markdown — Issue・PR で伝える</h2>
+      <p class="lead">GitHub の会話は <b>Issue</b> と <b>Pull Request</b> のコメントで進みます。読みやすく書くための <b>Markdown</b> と、人・作業をつなぐ <b>@メンション・ラベル・Issue と PR の紐付け</b> を押さえます。</p>
+
+      <h3 class="phase">✍️ Markdown の基本記法</h3>
+      <p>Issue・PR コメント・README は Markdown で書けます。左のように書くと、右のように表示されます。</p>
+      <table>
+        <tr><th>書き方</th><th>表示</th></tr>
+        <tr><td><code>## 見出し</code></td><td>大きな見出し</td></tr>
+        <tr><td><code>- 箇条書き</code></td><td>・箇条書き</td></tr>
+        <tr><td><code>1. 番号付き</code></td><td>1. 番号付き</td></tr>
+        <tr><td><code>**太字**</code></td><td><b>太字</b></td></tr>
+        <tr><td><code>`コード`</code></td><td><code>コード</code></td></tr>
+        <tr><td><code>- [ ] タスク</code> / <code>- [x] 完了</code></td><td>☐ タスク ／ ☑ 完了</td></tr>
+        <tr><td><code>[リンク](https://github.com)</code></td><td>リンク</td></tr>
+      </table>
+      <p>複数行のコードは <b>バッククォート3つ</b>で囲みます（言語名を付けると色が付きます）。</p>
+<pre><code>```js
+const FLOOR_ROW = ROWS - 1;
+```</code></pre>
+      <p class="note">💡 送信前に、入力欄上の <b>Preview</b> タブで表示を確認できます。</p>
+
+      <h3 class="phase">🔗 人と作業をつなぐ</h3>
+      <div class="card">
+        <b>@メンション・ラベル・アサイン</b>
+        <ul>
+          <li><b>@メンション</b>: コメントに <code>@ユーザー名</code> と書くと相手に通知が届く（例: <code>@octocat レビューお願いします</code>）</li>
+          <li><b>ラベル（Labels）</b>: Issue/PR に <code>bug</code> <code>question</code> などの分類を付けて探しやすくする</li>
+          <li><b>アサイン（Assignees）</b>: 「誰がやるか」を割り当てる。右サイドバーの <b>Assignees</b> から選ぶ</li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>Issue と Pull Request を紐付ける（closes #）</b>
+        <p>PR 本文に <code>Closes #&lt;issue-number&gt;</code> と書くと、その PR が <b>Merge された瞬間に対応 Issue が自動で閉じます</b>。「この修正はどの Issue のためか」も一目で分かります。</p>
+        <p class="note">✅ M3 の手順でも <code>Closes #&lt;issue-number&gt;</code> を PR 本文に入れました。これがこの紐付けです。<code>closes</code> / <code>fixes</code> / <code>resolves</code> のどれでも同じ働きをします。</p>
+      </div>
+
+      <h3 class="phase">💬 Issues と Discussions の違い</h3>
+      <table>
+        <tr><th></th><th>使いどころ</th></tr>
+        <tr><td><b>Issues</b></td><td><b>やること・バグ・タスク</b>を記録し、閉じるまで追う（今回のハンズオンで使用）</td></tr>
+        <tr><td><b>Discussions</b></td><td>結論を急がない <b>質問・アイデア・雑談</b>。閉じずに会話を続ける場</td></tr>
+        <tr><td><b>通知 / Watch</b></td><td>リポジトリを <b>Watch</b> すると更新が通知に届く。右上のベル 🔔 で確認・管理</td></tr>
+      </table>
+      <p class="doclink">詳しく見る: <a href="../docs/basic-features.md">GitHub の基本機能</a></p>
+    </section>
+
+    <section class="step">
+      <p class="eyebrow">M5 / Conflicts</p>
       <h2>コンフリクト解決</h2>
       <p class="lead">同じ行を2人が別々に変えると、Git は自動で決められず <b>コンフリクト（衝突）</b> になります。<b>エラーではなく「どちらを採用するか人に聞いている」サイン</b>。落ち着いて直せば必ず解決できます。</p>
 
@@ -519,7 +600,7 @@ const FLOOR_ROW = ROWS;
     </section>
 
     <section class="step">
-      <p class="eyebrow">M5 / Undo &amp; Recovery</p>
+      <p class="eyebrow">M6 / Undo &amp; Recovery</p>
       <h2>やり直し・復旧</h2>
       <p class="lead">Git は履歴を残すので <b>たいていの操作はやり直せます</b>。あわてて強い操作をする前に、まず <code>git status</code> と <code>git log --oneline</code> で状況を確認しましょう。</p>
 
@@ -560,7 +641,62 @@ git push</code></pre>
     </section>
 
     <section class="step">
-      <p class="eyebrow">M6 / Wrap-up</p>
+      <p class="eyebrow">M7 / History</p>
+      <h2>履歴を読む・探す</h2>
+      <p class="lead">Git は変更を全部履歴に残します。<b>「いつ・誰が・なぜ変えたか」を後からたどれる</b>のが強みです。読み方と探し方を知っておくと、調査もレビューも速くなります。</p>
+
+      <figure class="figure">
+        <svg viewBox="0 0 720 90" role="img" aria-label="commitが左から右へ時系列に積み重なり、履歴になっていく図。">
+          <line x1="60" y1="45" x2="660" y2="45" stroke="#30363d" stroke-width="2"/>
+          <circle cx="120" cy="45" r="16" fill="#1c2330" stroke="#3fb950" stroke-width="2"/>
+          <circle cx="280" cy="45" r="16" fill="#1c2330" stroke="#3fb950" stroke-width="2"/>
+          <circle cx="440" cy="45" r="16" fill="#1c2330" stroke="#3fb950" stroke-width="2"/>
+          <circle cx="600" cy="45" r="16" fill="#1c2330" stroke="#3fb950" stroke-width="2"/>
+          <text x="120" y="50" fill="#e6edf3" font-size="12" text-anchor="middle">C1</text>
+          <text x="280" y="50" fill="#e6edf3" font-size="12" text-anchor="middle">C2</text>
+          <text x="440" y="50" fill="#e6edf3" font-size="12" text-anchor="middle">C3</text>
+          <text x="600" y="50" fill="#e6edf3" font-size="12" text-anchor="middle">C4</text>
+          <text x="120" y="80" fill="#9da7b3" font-size="11" text-anchor="middle">最初の保存</text>
+          <text x="600" y="80" fill="#9da7b3" font-size="11" text-anchor="middle">最新の状態</text>
+          <text x="60" y="28" fill="#9da7b3" font-size="11">← 過去</text>
+          <text x="660" y="28" fill="#9da7b3" font-size="11" text-anchor="end">現在 →</text>
+        </svg>
+        <figcaption>履歴は commit の連なり。<b>log で並びを見て、blame で1行の由来を追い、検索で目的の変更にたどり着く</b>のが基本の3手です。</figcaption>
+      </figure>
+
+      <h3 class="phase">📜 履歴を見る（log）</h3>
+      <p>コミットの並びを新しい順に表示します。</p>
+<pre><code>git log --oneline -10</code></pre>
+      <p>枝分かれ（Branch / Merge）も見たいときはグラフ表示にします。</p>
+<pre><code>git log --oneline --graph --all</code></pre>
+      <p class="note">GitHub 上では <b>Commits</b> タブや、ファイル画面の <b>History</b> ボタンからも同じ履歴が読めます。</p>
+
+      <h3 class="phase">🔎 1行の由来を追う（blame）</h3>
+      <p>その行を「最後に変えた commit・人・日時」を表示します。バグの原因になった変更を探すときに便利です。</p>
+<pre><code>git blame app/falling-blocks/game.js</code></pre>
+      <p class="note">GitHub 上ではファイルを開いて <b>Blame</b> ボタン。行をクリックすると、その変更の commit / PR へたどれます。</p>
+
+      <h3 class="phase">🧭 探す・つなげる</h3>
+      <div class="card">
+        <b>検索フィルター</b>
+        <ul>
+          <li>Issues / Pull requests の検索欄で絞り込み: <code>is:issue is:open</code>、<code>is:pr is:merged</code>、<code>author:&lt;github-id&gt;</code>、<code>label:bug</code></li>
+          <li>コード検索: リポジトリ上部の検索窓に語句を入れて、ファイル横断で探す</li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>相互リンク（cross-linking）</b>
+        <ul>
+          <li>コメントに <code>#&lt;番号&gt;</code> と書くと Issue / PR へのリンクになる（例: <code>#12</code>）</li>
+          <li>commit の SHA（<code>a1b2c3d</code> など）を書くと、その commit へリンクする</li>
+          <li><code>Closes #&lt;番号&gt;</code> は M4 で見た「Issue と PR を結ぶ」書き方。履歴を後からたどる地図になる</li>
+        </ul>
+      </div>
+      <p class="doclink">詳しく見る: <a href="../docs/github-flow.md">GitHub Flow</a></p>
+    </section>
+
+    <section class="step">
+      <p class="eyebrow">M8 / Wrap-up</p>
       <h2>まとめ</h2>
       <p class="lead">今日の体験を、実務で使う GitHub の基本動作につなげます。</p>
 
@@ -572,6 +708,8 @@ git push</code></pre>
           <li>Pull Request では何を確認しましたか？</li>
           <li>Review コメントがあると何がよくなりますか？</li>
           <li>Merge 後、既定ブランチはどう変わりましたか？</li>
+          <li>コンフリクトはどんなときに起きますか？ 直すとき最後に必ずすることは？</li>
+          <li>「その行を誰がいつ変えたか」を知るには何を見ますか？（log / blame）</li>
         </ul>
       </div>
 
@@ -581,7 +719,7 @@ git push</code></pre>
 
       <div class="card next-workshops">
         <b>▶ 次に受けるワークショップ</b>
-        <p class="note">この基本編の後に続くワークショップです（リンクは準備中）。</p>
+        <p class="note">この基本編（GH-900 の基本フロー部分）の後に続くワークショップです。GH-900 の応用トピック（Copilot・セキュリティなど）もここから広げていきます。リンクは準備中です。</p>
         <div class="ws-grid">
           <a class="ws-card" href="#">
             <span class="ws-badge">GHCP · Basic</span>
@@ -605,6 +743,6 @@ git push</code></pre>
   </main>
 </div>
 
-<script src="assets/app.js?v=r2"></script>
+<script src="assets/app.js?v=r3"></script>
 </body>
 </html>
