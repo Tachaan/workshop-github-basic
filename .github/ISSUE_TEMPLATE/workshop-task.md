@@ -41,3 +41,5 @@ Pull Request を作成したら、ここに番号（例: `#13`）を書く。
 - [ ] Pull Request を Merge した
 - [ ] 関連する Issue が閉じた
 - [ ] 作業 Branch を削除した（または削除してよい状態）
+
+@YOUR-PARTNER-ID Review をお願いします。

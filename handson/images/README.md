@@ -5,7 +5,7 @@
 
 手順書の本文には、画像を貼ると分かりやすい場所に次のメモを入れてあります。
 
-````text
+```text
 > 📷 **スクショ**: `handson/images/01-issues-tab.png`
 > 撮る内容: ...
 ```
@@ -33,27 +33,27 @@
 - 横幅はおおよそ 1200px 前後を目安にすると、手順書・スライドの両方で見やすいです。
 - ブラウザの拡大率は 100% にして撮ると、文字が崩れません。
 
-## 必要な画像（16枚）
+## 必要な画像（17枚）
 
 | # | ファイル名 | 手順 | 撮る内容 / 赤枠で強調する場所 |
 | --- | --- | --- | --- |
+| 0 | `00-use-template.png` | 0-1〜0-2 | Template Repo右上の **Use this template** と、新規Repo作成画面 |
 | 1 | `01-issues-tab.png` | 1-1 | リポジトリ上部の横並びメニュー。**Issues** タブ |
 | 2 | `02-new-issue-button.png` | 1-2 | Issue 一覧の右上。緑の **New issue** ボタン |
 | 3 | `03-issue-form-filled.png` | 1-4 | Title と本文を入力し終えた Issue 作成画面（右下の **Submit new issue** も入れる） |
-| 4 | `04-issue-created-number.png` | 1-6 | 作成後の Issue 詳細。タイトル横の **#番号** と緑の **Open** バッジ |
+| 4 | `04-issue-created-number.png` | 1-7 | 作成後の Issue 詳細。タイトル横の **#番号** と緑の **Open** バッジ |
 | 5 | `05-code-clone-url.png` | 2-1 | 緑の **Code** ボタンを押し、HTTPS の URL と **コピーアイコン** が見える状態 |
 | 6 | `06-vscode-open.png` | 2-3 | VSCode で clone したリポジトリを開き、左のエクスプローラーに `app/falling-blocks/` が見える状態 |
 | 7 | `07-vscode-edit.png` | 4-3 | VSCode の編集画面で `FLOOR_ROW` の行を `ROWS - 1` に直したところ |
 | 8 | `08-terminal-commit-push.png` | 5-3 | ターミナルで `git add` → `git commit` → `git push` を実行し、push 成功メッセージが見える状態 |
 | 9 | `09-compare-pr-banner.png` | 6-1 | Push 直後の黄色い帯。緑の **Compare & pull request** ボタン |
 | 10 | `10-base-compare.png` | 6-2 | PR 作成画面上部のドロップダウン。`base: main ← compare: 自分のBranch` |
-| 11 | `11-files-changed-diff.png` | 6-5 | **Files changed** の差分。赤い `-` 行と緑の `+` 行 |
+| 11 | `11-files-changed-diff.png` | 6-6 | **Files changed** の差分。赤い `-` 行と緑の `+` 行 |
 | 12 | `12-inline-comment.png` | 7-3 | Files changed で行の **＋** を押し、コメント入力欄が開いた状態 |
 | 13 | `13-review-changes.png` | 7-4 | **Review changes** → Comment / Approve と緑の **Submit review** |
 | 14 | `14-merge-pr.png` | 9-1 | Conversation 最下部の緑 **Merge pull request** → **Confirm merge** |
 | 15 | `15-delete-branch.png` | 9-3 | Merge 後の **Delete branch** ボタン（上部が紫の **Merged**） |
 | 16 | `16-app-fixed.png` | 10 | 修正後の Falling Blocks。ブロックが盤面の底で止まっている画面 |
 
-> スライド（M3）には、このうち主要な 6 枚（Issue / Clone / VSCode編集 / Commit·Push / Review / Merge =
-> `03` / `05` / `07` / `08` / `13` / `14`）のプレースホルダを用意しています。残りは手順書側で活用してください。
-````
+> スライド（M3）には、このうち主要な7枚（Template / Issue / Clone / VSCode編集 / Commit·Push / Review / Merge =
+> `00` / `03` / `05` / `07` / `08` / `13` / `14`）のプレースホルダを用意しています。残りは手順書側で活用してください。

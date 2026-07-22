@@ -8,6 +8,7 @@
 | 機能 | 用途 | 基本編での扱い |
 | --- | --- | --- |
 | Repository | 教材ファイルを置く | 必須 |
+| Template Repository | 参加者ごとに同じ初期状態の練習Repoを作る | 必須 |
 | Issue | 作業内容を記録する | 必須 |
 | Branch | main から分けて作業する | 必須 |
 | Commit | 変更を履歴として保存する | 必須 |
@@ -16,6 +17,10 @@
 | Merge | レビュー済みの変更を main に取り込む | 必須 |
 | ローカル開発（clone / VSCode編集 / commit / push） | 自分のPCで修正して GitHub に送る | 必須 |
 | Markdown | 説明文を書く | 必須 |
+| Label / Assignee / @メンション | Issueを分類し、担当と通知先を示す | 必須 |
+| Collaborator | ペアでReviewできる権限を用意する | 必須 |
+| Codespaces | ローカル構築が難しい場合の代替環境 | 選択 |
+| log / blame / 検索 | Merge後の変更理由と由来をたどる | 必須 |
 
 ## 2. 基本編では必須にしない機能
 
@@ -30,53 +35,47 @@
 
 ## 3. 推奨する実施パターン
 
-### パターンA: 講師のリポジトリに参加者を招待する
+### 基本: Templateから参加者ごとに練習Repoを作る
 
-少人数向けです。
-講師がこのリポジトリを用意し、参加者を collaborator として追加します。
+全参加者が [`Tachaan/github-basic-practice`](https://github.com/Tachaan/github-basic-practice) の **Use this template** から、自分のアカウントに次のRepoを作ります。
 
-メリット:
+```text
+github-basic-practice-<github-id>
+```
 
-- 参加者全員の PR が1か所に集まる
-- レビュー演習がしやすい
-- 講師が進捗を見やすい
+推奨設定:
 
-注意:
-
-- 参加者に書き込み権限が必要
-- 人数が多い場合は権限管理が手間になる
-
-### パターンB: 参加者が fork して作業する
-
-公開リポジトリで実施する場合に向いています。
+| 項目 | 設定 |
+| --- | --- |
+| Owner | 参加者本人 |
+| Visibility | Public |
+| Default branch | main（Templateから継承） |
+| Review相手 | ペアをCollaboratorへ招待 |
 
 メリット:
 
-- 講師リポジトリへの直接書き込み権限が不要
-- OSS でよく使われる流れに近い
+- Repository作成から履歴確認まで、1つの自分のRepoで完結する
+- 全員が同じバグ・Issue Template・PR Templateから始められる
+- 講師Repoへの書き込み権限やfork / upstreamの説明が不要
+- 参加者がRepo所有者なので、SettingsやMerge、終了後のArchiveも体験できる
 
 注意:
 
-- 初心者には fork / upstream の説明が少し難しい
-- 最初のワークショップでは講師サポートが必要
+- 参加者ごとにPRが別Repoへ分かれるため、ペアでPR URLを交換する
+- Collaborator招待の承認に時間がかかる場合がある
+- Publicにできない研修ではPrivate Repoを作り、Collaborator承認を開始前に済ませる
+
+### 代替: 講師の共有Repoで実施する
+
+時間が非常に短い場合や、参加者がRepoを作成できない環境では、講師の共有Repoへ全員を招待する方式も使えます。ただし、権限管理・同名Branch・参加者同士の変更衝突が増えるため、本当の初心者向けの第一候補にはしません。
+
+### 今回扱わない: fork方式
+
+fork / upstreamはOSS参加で重要ですが、最初の体験では概念とリモート構成が増えます。本教材では発展扱いとし、Templateから作る独立Repoと混同させません。
 
 ## 4. この教材での推奨
 
-本当の初心者向けには、まず **パターンA** を推奨します。
-
-理由:
-
-- GitHub Flow の本質である Issue → Branch → Commit → PR → Review → Merge に集中できる
-- fork や upstream の概念を後回しにできる
-- 参加者同士のレビューがやりやすい
-
-方式選定の目安:
-
-| 状況 | 推奨 | 理由 |
-| --- | --- | --- |
-| 少人数・社内研修 | パターンA | 参加者全員のPRを1か所で見られる |
-| 書き込み権限を配りにくい | パターンB | 講師リポジトリを直接変更しない |
-| GitHub完全初心者が多い | パターンA | fork / upstream の説明を後回しにできる |
+**参加者ごとのPublic Template Repo + ペアCollaborator**を標準にします。招待が間に合わない場合も、Public RepoのPR URLを共有してReviewコメントを行い、MergeはRepo所有者が担当します。
 
 ## 5. 高度な機能を使わずに伝えること
 

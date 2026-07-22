@@ -173,7 +173,7 @@ push が成功すると、GitHub のリポジトリ画面に
 
 ここから先は基本編と同じ流れです。Web UI で Pull Request を作り、レビューを受けて Merge します。
 
-- 詳しい画面操作: [基本編: VSCode で修正し、GitHub Flow を一周する](../handson/01-github-flow-web.md) の Step 6 以降
+- 詳しい画面操作: [基本編: Template Repo作成から履歴確認まで](../handson/01-github-flow-web.md) の Step 6 以降
 - CLI で PR を作りたい場合:
 
 ```bash

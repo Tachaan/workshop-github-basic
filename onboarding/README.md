@@ -91,7 +91,7 @@ flowchart LR
 
 ## 🔗 関連リンク
 
-- 基本編ハンズオン: [VSCode で修正し、GitHub Flow を一周する](../handson/01-github-flow-web.md)
+- 基本編ハンズオン: [Template Repo作成から履歴確認まで](../handson/01-github-flow-web.md)
 - CLI 体験（基本編の発展）: [CLI で同じ流れを体験する](../handson/02-github-flow-cli-optional.md)
 - 座学: [GitHub Flow](../docs/github-flow.md) / [基本機能](../docs/basic-features.md)
 - トップ: [リポジトリ README](../README.md)

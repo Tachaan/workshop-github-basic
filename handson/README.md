@@ -1,29 +1,30 @@
 # ハンズオン手順
 
-> ℹ️ 基本編は、コードの修正を**自分のPCの VSCode** で行い、Issue・Pull Request・Review・Merge を **GitHub（ブラウザ）** で行います。
-> 本教材では既定ブランチを `main` と表記します。画面上で `master` と表示される場合は、`main` を `master` に読み替えてください。
+> ℹ️ 基本編は、Template から参加者ごとに練習Repoを作り、Repository作成 → Issue → Branch → Commit → Pull Request → Review → Merge → 履歴確認を1本のストーリーで進めます。
+> コードの修正は**自分のPCの VSCode**、または **Codespaces** で行います。練習Repoの既定ブランチは `main` です。
 
 ## 前提事項
 
 - GitHub アカウントを持っていること
   - まだ持っていない場合は [GitHub アカウントを作成する](../docs/create-github-account.md) を参照してください。
 - 開発環境（**Git / VSCode / GitHub認証**）が用意できていること
-  - コードは自分のPCの VSCode で修正します。未導入の場合は、先に [環境構築（必要ツール・インストール・認証）](../onboarding/00-setup.md) を済ませてください（約30〜45分）。
+  - コードは自分のPCの VSCode で修正します。未導入の場合は、[環境構築](../onboarding/00-setup.md) を済ませるか、Codespaces を選びます。
+- Reviewするペアの GitHub ID が分かること
 
 | ツール | 役割 | 確認コマンド |
 | --- | --- | --- |
 | Git | 変更を記録し、GitHub と同期する | `git --version` |
 | VSCode | コードを編集する | （起動できれば OK） |
-| GitHub 認証 | clone / push を許可する | `gh auth status` |
+| GitHub 認証 | clone / push を許可する | `gh auth status` / `ssh -T git@github.com` / HTTPSブラウザ認証 |
 
 ## 開始前チェック
 
 - GitHub にサインインしている
-- 講師から案内されたリポジトリを開ける
-- リポジトリの **Issues** タブと **Pull requests** タブが見える
+- 練習Template [`Tachaan/github-basic-practice`](https://github.com/Tachaan/github-basic-practice) を開ける
+- 自分とReview相手の GitHub ID が分かる
 - ターミナルで `git --version` が表示される
 - VSCode が起動できる（`code .` または **File > Open Folder**）
-- `gh auth status` などで GitHub の認証が済んでいる（clone / push できる）
+- GitHub CLI / HTTPS / SSH のいずれかで認証できる（clone / push できる）
 
 うまくいかない場合は、そのまま進めず講師に相談してください。
 このワークショップでは、間違えた操作も GitHub Flow を理解する材料として扱います。
@@ -44,21 +45,15 @@
 app/falling-blocks/game.js
 ```
 
-## ローカルで見る
+## Falling Blocks をローカルで見る
 
-リポジトリのルートで以下を実行します。
+参加者は、自分の練習Repoにある `app/falling-blocks/index.html` をエクスプローラー / Finderでダブルクリックします。サーバは不要です。
 
-```powershell
-.\scripts\serve-local.ps1
+Codespacesでは、Repoのルートで次を実行し、PortsタブのURLへ `/app/falling-blocks/` を付けて開きます。
+
+```bash
+python -m http.server 8000
 ```
-
-ブラウザで以下を開きます。
-
-```text
-http://127.0.0.1:8000/app/falling-blocks/
-```
-
-スライド風のハンズオンサイトは http://127.0.0.1:8000/handson/ で確認できます。
 
 ## 進め方
 
@@ -66,23 +61,25 @@ http://127.0.0.1:8000/app/falling-blocks/
 
 | Step | 内容 | 目安 |
 | --- | --- | --- |
+| 0 | Templateから自分の練習Repoを作り、ペアを招待する | 5分 |
 | 1 | Issue を作る（GitHub） | 5分 |
-| 2 | clone して VSCode で開く（PC） | 5分 |
-| 3 | Branch を作って `game.js` を修正する（PC） | 8分 |
+| 2 | clone / CodespacesでRepoを開く | 4分 |
+| 3 | Branch を作って `game.js` を修正する | 7分 |
 | 4 | Commit / Push する（PC） | 4分 |
 | 5 | Pull Request を作る（GitHub） | 5分 |
-| 6 | Review する（GitHub） | 5分 |
-| 7 | Merge して後片付けする（GitHub + PC） | 3分 |
+| 6 | ペアでReviewする（GitHub） | 7分 |
+| 7 | Merge・動作・履歴を確認する | 8分 |
 
 ## ハンズオン
 
-- [基本編: VSCode で修正し、GitHub Flow を一周する](01-github-flow-web.md)
+- [基本編: Template Repo 作成から履歴確認までを一周する](01-github-flow-web.md)
 - [発展編: CLI で同じ流れを体験する](02-github-flow-cli-optional.md)
 - [発展編: ローカル開発オンボーディング編](../onboarding/README.md)（コンフリクト解消・やり直しまで含む発展トラック）
 
 ## 完了条件
 
 - Falling Blocks の底判定バグを説明できる
+- Templateから作った自分の練習Repoがある
 - 自分の Issue がある
 - 自分の Pull Request がある
 - Pull Request に Review コメントが1つ以上ある
@@ -90,3 +87,4 @@ http://127.0.0.1:8000/app/falling-blocks/
 - 関連 Issue が Closed になっている、または閉じてよい状態になっている
 - `app/falling-blocks/game.js` の `FLOOR_ROW` が修正されている
 - 使い終わった作業 Branch が削除されている、または削除してよい状態になっている
+- `git log` / `git blame` から自分の修正を見つけられる
