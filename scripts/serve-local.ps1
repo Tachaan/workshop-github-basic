@@ -9,7 +9,7 @@ if ($Port -lt 1 -or $Port -gt 65535) {
 }
 
 $Root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
-$Url = "http://127.0.0.1:$Port/handson/"
+$Url = "http://127.0.0.1:$Port/"
 
 Write-Host "Serving workshop from $Root"
 Write-Host "Open $Url"

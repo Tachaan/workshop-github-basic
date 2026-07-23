@@ -4,21 +4,71 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GitHub Basic ワークショップ</title>
-<meta http-equiv="refresh" content="0; url=./handson/index.html">
-<link rel="canonical" href="./handson/index.html">
-<style>
-  body { font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-         background: #0d1117; color: #e6edf3; display: grid; place-items: center; min-height: 100vh; margin: 0; }
-  .card { text-align: center; padding: 2rem 2.5rem; }
-  h1 { font-size: 1.4rem; margin: 0 0 0.75rem; }
-  a { color: #58a6ff; }
-</style>
+<meta name="description" content="Git / GitHub 初心者が、Issue、Branch、Commit、Pull Request、Review、Merge の基本フローを体験するワークショップです。">
+<link rel="stylesheet" href="assets/site.css?v=1">
+<script src="assets/site.config.js?v=1" defer></script>
+<script src="assets/site.js?v=1" defer></script>
 </head>
 <body>
-  <div class="card">
-    <h1>🐙 GitHub Basic ワークショップ</h1>
-    <p>ワークショップページへ移動します…</p>
-    <p>自動で移動しない場合は <a href="./handson/index.html">こちらをクリック</a> してください。</p>
-  </div>
+<header class="topbar">
+  <a class="brand" id="brand" href="#README.md" aria-label="Workshop ホーム">
+    <span class="brand-code" id="brand-code">GIT / 01</span>
+    <span id="brand-name">GitHub Basic ワークショップ</span>
+  </a>
+  <div class="topbar-actions" id="topbar-actions" aria-label="関連リンク"></div>
+</header>
+
+<div class="layout">
+  <nav class="steps" aria-label="Workshop ページ">
+    <div class="nav-heading">
+      <p class="eyebrow" id="nav-eyebrow">Workshop</p>
+      <h1 id="nav-title">GitHub Basic</h1>
+      <p id="nav-description">GitHub Flow を1本のストーリーで体験します。</p>
+    </div>
+    <ol id="agenda-nav"></ol>
+    <div class="side-card">
+      <b id="side-card-label">Practice template</b>
+      <span id="side-card-value">Tachaan/github-basic-practice</span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="progress" aria-hidden="true"><div id="progress-bar"></div></div>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow" id="page-label">Overview</p>
+        <h2 id="page-title">GitHub Basic ワークショップ</h2>
+        <p class="lead" id="page-summary">GitHub を使った基本の開発の流れを学びます。</p>
+      </div>
+      <div class="hero-signature" id="hero-signature">
+        <span class="hero-signature-label" id="hero-signature-label">GitHub Fundamentals</span>
+        <div class="hero-signature-code">
+          <strong id="hero-signature-code">GIT</strong>
+          <b id="hero-signature-sequence">01</b>
+        </div>
+        <span class="hero-signature-edition" id="hero-signature-edition">2026 / Basic</span>
+      </div>
+      <div class="timeline" id="timeline" aria-label="ページ構成"></div>
+      <div class="completion" id="page-completion" hidden>
+        <span>完了条件</span>
+        <p id="page-completion-text"></p>
+      </div>
+    </section>
+
+    <article class="markdown-panel" id="doc-content" aria-live="polite" aria-busy="true">
+      <div class="loading-card">
+        <b>ページを読み込んでいます...</b>
+        <span>Markdown ファイルを取得して、ブラウザ表示用に整形します。</span>
+      </div>
+    </article>
+
+    <div class="nav-btns" aria-label="ページ移動">
+      <button class="nav ghost" id="prev" type="button">← 前へ</button>
+      <a class="source-link" id="source-link" href="README.md">Markdown を直接開く</a>
+      <button class="nav" id="next" type="button">次へ →</button>
+    </div>
+  </main>
+</div>
 </body>
 </html>
